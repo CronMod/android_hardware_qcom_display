@@ -60,7 +60,11 @@ else
         LOCAL_MODULE := copybit.$(TARGET_BOARD_PLATFORM)
         LOCAL_MODULE_TAGS := optional
         LOCAL_C_INCLUDES += hardware/qcom/display/libgralloc
-        LOCAL_CFLAGS += -DCOPYBIT_MSM7K=1
+        ifeq ($(TARGET_BOARD_PLATFORM),qsd8k)
+            LOCAL_CFLAGS += -DCOPYBIT_QSD8K=1
+        else
+            LOCAL_CFLAGS += -DCOPYBIT_MSM7K=1
+        endif
         include $(BUILD_SHARED_LIBRARY)
     endif
 endif
